@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { StartLapButtonComponent } from './start-lap-button.component';
+import { SharedModule } from 'shared/shared.module';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
-  declarations: [StartLapButtonComponent]
+  imports: [SharedModule],
+  declarations: [StartLapButtonComponent],
+	exports: [StartLapButtonComponent]
 })
-export class StartLapButtonModule { }
+export class StartLapButtonModule {}

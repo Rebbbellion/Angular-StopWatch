@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ResetButtonComponent } from './reset-button.component';
+import { SharedModule } from 'shared/shared.module';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
-  declarations: [ResetButtonComponent]
+  imports: [SharedModule],
+  declarations: [ResetButtonComponent],
+  exports: [ResetButtonComponent],
 })
-export class ResetButtonModule { }
+export class ResetButtonModule {}

@@ -4,7 +4,6 @@ import { ClockDisplayComponent, ButtonsRowComponent } from './ui';
 
 @NgModule({
   declarations: [ClockDisplayComponent, ButtonsRowComponent],
-  imports: [],
-  exports: [CommonModule],
+  exports: [CommonModule,ClockDisplayComponent,ButtonsRowComponent],
 })
 export class SharedModule {}

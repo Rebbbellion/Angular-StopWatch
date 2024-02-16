@@ -5,5 +5,6 @@ import { SharedModule } from 'shared/shared.module';
 @NgModule({
   imports: [SharedModule],
   declarations: [StartStopButtonComponent],
+	exports: [StartStopButtonComponent]
 })
 export class StartStopButtonModule {}
