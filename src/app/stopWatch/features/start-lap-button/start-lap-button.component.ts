@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-start-lap-button',
   templateUrl: './start-lap-button.component.html',
 })
-export class StartLapButtonComponent implements OnInit {
+export class StartLapButtonComponent {
+  @Input() stopWatchStopped: boolean = true;
+  @Output() startNewLap: EventEmitter<void> = new EventEmitter();
 
-  constructor() { }
-
-  ngOnInit() {
+  onNewLapClick() {
+    this.startNewLap.emit();
   }
-
 }

@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-start-stop-button',
   templateUrl: './start-stop-button.component.html',
-  styleUrls: ['./start-stop-button.component.css']
 })
-export class StartStopButtonComponent implements OnInit {
+export class StartStopButtonComponent {
+  @Input() stopWatchStopped: boolean = true;
 
-  constructor() { }
+  @Output() startAndStopClick: EventEmitter<void> = new EventEmitter();
 
-  ngOnInit() {
+  onStartAndStopClick() {
+    this.startAndStopClick.emit();
   }
-
 }

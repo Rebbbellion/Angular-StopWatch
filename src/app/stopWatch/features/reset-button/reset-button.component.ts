@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 
 @Component({
   selector: 'app-reset-button',
   templateUrl: './reset-button.component.html',
 })
-export class ResetButtonComponent implements OnInit {
+export class ResetButtonComponent {
+  @Input() stopWatchStopped: boolean = true;
 
-  constructor() { }
+  @Output() resetClick: EventEmitter<void> = new EventEmitter();
 
-  ngOnInit() {
+  onResetClick() {
+    this.resetClick.emit();
   }
-
 }

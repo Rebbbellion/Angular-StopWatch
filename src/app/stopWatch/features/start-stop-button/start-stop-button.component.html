@@ -1,1 +1,8 @@
-<button class="border-2 border-black bg-green-500 w-full py-2">Start</button>
+<button
+  #startStop
+  class="border-2 border-black bg-green-500 w-full py-2 transition-colors"
+  (click)="onStartAndStopClick()"
+	[ngClass]="{'bg-red-500': !stopWatchStopped}"
+>
+  {{ stopWatchStopped ? "Start" : "Stop" }}
+</button>

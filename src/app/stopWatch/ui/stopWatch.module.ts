@@ -6,6 +6,7 @@ import {
   StartLapButtonModule,
   StartStopButtonModule,
 } from 'stopWatch/features';
+import { LapListComponent } from './lap-list';
 
 @NgModule({
   imports: [
@@ -14,9 +15,10 @@ import {
     ResetButtonModule,
     StartStopButtonModule,
   ],
-  declarations: [StopWatchPage],
+  declarations: [StopWatchPage,LapListComponent],
   exports: [
     StopWatchPage,
+		LapListComponent,
     StartStopButtonModule,
     StartLapButtonModule,
     ResetButtonModule,
