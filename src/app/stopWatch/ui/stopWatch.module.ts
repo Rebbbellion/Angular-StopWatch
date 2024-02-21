@@ -15,10 +15,10 @@ import { LapListComponent } from './lap-list';
     ResetButtonModule,
     StartStopButtonModule,
   ],
-  declarations: [StopWatchPage,LapListComponent],
+  declarations: [StopWatchPage, LapListComponent],
   exports: [
     StopWatchPage,
-		LapListComponent,
+    LapListComponent,
     StartStopButtonModule,
     StartLapButtonModule,
     ResetButtonModule,

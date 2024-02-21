@@ -1,9 +1,9 @@
 import {
-  Component,
-  ElementRef,
-  OnInit,
-  QueryList,
-  ViewChild,
+	Component,
+	ElementRef,
+	OnDestroy,
+	OnInit,
+	ViewChild
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { StopWatchService } from 'stopWatch/data-access';
@@ -16,7 +16,7 @@ import { IStopWatch } from 'stopWatch/utils/interfaces';
     class: 'flex grow flex-col justify-center items-center px-[15px]',
   },
 })
-export class StopWatchPage implements OnInit {
+export class StopWatchPage implements OnInit, OnDestroy {
   constructor(private stopWatchService: StopWatchService) {}
 
   ngOnInit(): void {
@@ -90,5 +90,11 @@ export class StopWatchPage implements OnInit {
         top: this.lapList.nativeElement.scrollHeight,
       });
     }, 0);
+  }
+
+  ngOnDestroy(): void {
+    this.stopWatchStateSubscription?.unsubscribe();
+    this.lapSubscription?.unsubscribe();
+    this.stopWatchSubscription?.unsubscribe();
   }
 }
