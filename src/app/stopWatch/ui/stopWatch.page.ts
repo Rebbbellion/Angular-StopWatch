@@ -1,10 +1,4 @@
-import {
-	Component,
-	ElementRef,
-	OnDestroy,
-	OnInit,
-	ViewChild
-} from '@angular/core';
+import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { StopWatchService } from 'stopWatch/data-access';
 import { IStopWatch } from 'stopWatch/utils/interfaces';
@@ -16,70 +10,46 @@ import { IStopWatch } from 'stopWatch/utils/interfaces';
     class: 'flex grow flex-col justify-center items-center px-[15px]',
   },
 })
-export class StopWatchPage implements OnInit, OnDestroy {
+export class StopWatchPage implements OnDestroy {
   constructor(private stopWatchService: StopWatchService) {}
-
-  ngOnInit(): void {
-    this.stopWatchStateSubscription =
-      this.stopWatchService.watchStateSubject.subscribe((value) => {
-        this.stopWatchStopped = value;
-      });
-
-    this.lapSubscription = this.stopWatchService.lapsSubject.subscribe({
-      next: (value) => {
-        if (value) {
-          this.lapsArray.push(value);
-        } else {
-          this.lapsArray.length = 0;
-        }
-      },
-    });
-  }
-
   stopWatch: IStopWatch = {
-    currentLapTime: {
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-      milliseconds: 0,
-    },
-    stopWatchTime: {
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-      milliseconds: 0,
-    },
+    currentLapTime: 0,
+    stopWatchTime: 0,
   };
   lapsArray: IStopWatch[] = [];
-
   stopWatchStopped: boolean = true;
 
-  stopWatchSubscription: Subscription | undefined;
-  lapSubscription: Subscription | undefined;
-  stopWatchStateSubscription: Subscription | undefined;
-
   @ViewChild('lapList') lapList!: ElementRef<HTMLDivElement>;
+
+  stopWatchSubscription: Subscription | undefined;
 
   watchStartAndStop() {
     if (this.stopWatchStopped) {
       this.stopWatchSubscription =
-        this.stopWatchService.stopWatchSource.subscribe((value) => {
-          this.stopWatch = value;
+        this.stopWatchService.stopWatchSource.subscribe(() => {
+          ++this.stopWatch.currentLapTime;
+          ++this.stopWatch.stopWatchTime;
         });
     } else {
       this.stopWatchSubscription?.unsubscribe();
     }
-    this.stopWatchService.stopWatchStartStopToggle();
+
+    this.stopWatchStopped = !this.stopWatchStopped;
   }
 
   watchReset() {
     this.stopWatchSubscription?.unsubscribe();
-    this.stopWatchService.stopWatchReset();
+    for (const prop in this.stopWatch) {
+      this.stopWatch[prop as keyof IStopWatch] = 0;
+    }
+    this.lapsArray.length = 0;
   }
 
   createLap() {
     this.lapsArray.pop();
-    this.stopWatchService.createLap();
+    this.lapsArray.push({ ...this.stopWatch });
+    this.stopWatch.currentLapTime = 0;
+    this.lapsArray.push(this.stopWatch);
     this.scrollToBottom();
   }
 
@@ -93,8 +63,6 @@ export class StopWatchPage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.stopWatchStateSubscription?.unsubscribe();
-    this.lapSubscription?.unsubscribe();
     this.stopWatchSubscription?.unsubscribe();
   }
 }

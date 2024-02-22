@@ -1,7 +1,6 @@
 <h1 class="font-bold text-6xl min-[400px]:text-7xl text-center">
-  {{ clockDisplay.hours | addZero }}:{{ clockDisplay.minutes | addZero }}:{{
-    clockDisplay.seconds | addZero
+  {{ clockDisplay | convertMsToTime
   }}<span class="font-bold text-3xl min-[400px]:text-4xl">{{
-    clockDisplay.milliseconds | addZero
+    clockDisplay | convertMsToTime : "ms"
   }}</span>
 </h1>

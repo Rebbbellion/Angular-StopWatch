@@ -1,28 +1,24 @@
 <table *ngIf="lapsArray.length" [@showHideLapList]>
   <thead>
     <tr>
-      <th class="text-xl">№</th>
-      <th class="px-1 text-xl">Current Lap Time</th>
-      <th class="px-1 text-xl">Lap Time</th>
+      <th class="text-lg min-[400px]:text-xl">№</th>
+      <th class="px-1 min-[400px]:px-5 text-lg min-[400px]:text-xl">Current Lap Time</th>
+      <th class="px-1 min-[400px]:px-5 text-lg min-[400px]:text-xl">Lap Time</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let lap of lapsArray; let i = index" #lapElement>
       <td class="text-xl">{{ i + 1 }}</td>
       <td class="px-1 min-[400px]:px-5 text-xl">
-        {{ lap.currentLapTime.hours | addZero }}:{{
-          lap.currentLapTime.minutes | addZero
-        }}:{{ lap.currentLapTime.seconds | addZero }}
-        <span class="text-xs">{{
-          lap.currentLapTime.milliseconds | addZero
+        {{ lap.currentLapTime | convertMsToTime
+        }}<span class="text-sm min-[400px]:text-sm">{{
+          lap.currentLapTime | convertMsToTime : "ms"
         }}</span>
       </td>
       <td class="px-1 min-[400px]:px-5 text-xl">
-        {{ lap.stopWatchTime.hours | addZero }}:{{
-          lap.stopWatchTime.minutes | addZero
-        }}:{{ lap.stopWatchTime.seconds | addZero }}
-        <span class="text-xs">{{
-          lap.stopWatchTime.milliseconds | addZero
+        {{ lap.stopWatchTime | convertMsToTime
+        }}<span class="text-sm min-[400px]:text-sm">{{
+          lap.stopWatchTime | convertMsToTime : "ms"
         }}</span>
       </td>
     </tr>

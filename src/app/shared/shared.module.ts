@@ -1,18 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClockDisplayComponent, ButtonsRowComponent } from './ui';
-import { AddZeroPipe } from './pipes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ConvertMsToTimePipe } from './pipes';
 
 @NgModule({
-  declarations: [ClockDisplayComponent, ButtonsRowComponent, AddZeroPipe],
+  declarations: [
+    ClockDisplayComponent,
+    ButtonsRowComponent,
+    ConvertMsToTimePipe,
+  ],
   imports: [CommonModule],
   exports: [
     CommonModule,
     ClockDisplayComponent,
     ButtonsRowComponent,
-    AddZeroPipe,
     BrowserAnimationsModule,
+    ConvertMsToTimePipe,
   ],
 })
 export class SharedModule {}

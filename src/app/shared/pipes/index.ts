@@ -1,2 +1,3 @@
-export { AddZeroPipe } from "./addZero.pipe";
+export { ConvertMsToTimePipe } from "./convertMsToTime.pipe";
+
 
