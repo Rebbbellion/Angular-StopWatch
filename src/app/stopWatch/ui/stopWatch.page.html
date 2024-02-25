@@ -1,21 +1,18 @@
-<app-clock-display [clockDisplay]="stopWatch.stopWatchTime" class="block mb-10">
+<app-clock-display
+  [clockDisplay]="(stopWatch|async)?.stopWatchTime"
+  class="block mb-10"
+>
 </app-clock-display>
 <app-buttons-row class="flex gap-4 mb-10 w-full sm:w-[70%] lg:w-50%">
-  <app-reset-button
-    (resetClick)="watchReset()"
-    class="basis-[33.333%]"
-  ></app-reset-button>
+  <app-reset-button class="basis-[33.333%]"></app-reset-button>
   <app-start-stop-button
-    (startAndStopClick)="watchStartAndStop()"
     class="basis-[33.333%]"
-    [stopWatchStopped]="stopWatchStopped"
+    [stopWatchRunning]="stopWatchRunning |async"
   ></app-start-stop-button>
   <app-start-lap-button
-    (startNewLap)="createLap()"
     class="basis-[33.333%]"
-    [stopWatchStopped]="stopWatchStopped"
+    [stopWatchRunning]="stopWatchRunning |async"
   ></app-start-lap-button>
 </app-buttons-row>
-<div class="self-center overflow-y-scroll h-[150px]" #lapList>
-  <app-lap-list [lapsArray]="lapsArray" class="block"></app-lap-list>
-</div>
+<app-lap-list class="block h-[150px]"></app-lap-list>
+

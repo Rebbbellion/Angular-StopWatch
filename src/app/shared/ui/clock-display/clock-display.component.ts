@@ -5,5 +5,5 @@ import { Component, Input } from '@angular/core';
   templateUrl: './clock-display.component.html',
 })
 export class ClockDisplayComponent {
-  @Input() clockDisplay: number = 0;
+  @Input() clockDisplay: number|undefined  = 0;
 }

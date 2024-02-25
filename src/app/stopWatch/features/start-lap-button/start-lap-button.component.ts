@@ -1,14 +1,14 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { StopWatchService } from 'stopWatch/data-access';
 
 @Component({
   selector: 'app-start-lap-button',
   templateUrl: './start-lap-button.component.html',
 })
 export class StartLapButtonComponent {
-  @Input() stopWatchStopped: boolean = true;
-  @Output() startNewLap: EventEmitter<void> = new EventEmitter();
-
+  constructor(private stopWatchService: StopWatchService) {}
+  @Input() stopWatchRunning!: boolean | null;
   onNewLapClick() {
-    this.startNewLap.emit();
+    this.stopWatchService.createLap();
   }
 }

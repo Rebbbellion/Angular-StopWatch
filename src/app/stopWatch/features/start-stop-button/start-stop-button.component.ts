@@ -1,15 +1,16 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { StopWatchService } from 'stopWatch/data-access';
 
 @Component({
   selector: 'app-start-stop-button',
   templateUrl: './start-stop-button.component.html',
 })
 export class StartStopButtonComponent {
-  @Input() stopWatchStopped: boolean = true;
+  constructor(private stopWatchService: StopWatchService){};
 
-  @Output() startAndStopClick: EventEmitter<void> = new EventEmitter();
+  @Input() stopWatchRunning!: boolean | null;
 
   onStartAndStopClick() {
-    this.startAndStopClick.emit();
+    this.stopWatchService.watchStartAndStop();
   }
 }

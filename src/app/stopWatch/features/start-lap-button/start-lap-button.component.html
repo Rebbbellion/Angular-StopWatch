@@ -1,7 +1,7 @@
 <button
   class="border-2 border-blue-800 bg-green-300 w-full py-2 disabled:border-gray-500 disabled:bg-gray-500 transition-colors"
   (click)="onNewLapClick()"
-	[disabled]="stopWatchStopped"
+	[disabled]="!stopWatchRunning"
 >
   New Lap
 </button>

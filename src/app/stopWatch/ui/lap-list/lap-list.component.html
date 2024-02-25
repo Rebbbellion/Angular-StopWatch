@@ -1,25 +1,28 @@
-<table *ngIf="lapsArray.length" [@showHideLapList]>
+<table
+	#lapTable
+  class="overflow-y-scroll block h-[150px]"
+  *ngIf="lapsArray.length"
+  [@showHideLapList]
+>
   <thead>
     <tr>
       <th class="text-lg min-[400px]:text-xl">№</th>
-      <th class="px-1 min-[400px]:px-5 text-lg min-[400px]:text-xl">Current Lap Time</th>
-      <th class="px-1 min-[400px]:px-5 text-lg min-[400px]:text-xl">Lap Time</th>
+      <th class="px-1 min-[400px]:px-5 text-lg min-[400px]:text-xl">
+        Current Lap Time
+      </th>
+      <th class="px-1 min-[400px]:px-5 text-lg min-[400px]:text-xl">
+        Lap Time
+      </th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let lap of lapsArray; let i = index" #lapElement>
+    <tr *ngFor="let lap of lapsArray; let i = index">
       <td class="text-xl">{{ i + 1 }}</td>
       <td class="px-1 min-[400px]:px-5 text-xl">
-        {{ lap.currentLapTime | convertMsToTime
-        }}<span class="text-sm min-[400px]:text-sm">{{
-          lap.currentLapTime | convertMsToTime : "ms"
-        }}</span>
+        {{ lap.currentLapTime | convertMsToTime }}
       </td>
       <td class="px-1 min-[400px]:px-5 text-xl">
-        {{ lap.stopWatchTime | convertMsToTime
-        }}<span class="text-sm min-[400px]:text-sm">{{
-          lap.stopWatchTime | convertMsToTime : "ms"
-        }}</span>
+        {{ lap.stopWatchTime | convertMsToTime }}
       </td>
     </tr>
   </tbody>
